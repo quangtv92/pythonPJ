@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-#R number in string
+#Read number in string
 
 def readnum(numbr):#result = a name-vi a number
 	result = "";
@@ -33,15 +33,19 @@ def readxy(numbr):#read a number with xy
 	if numbr<20:
 		if numbr==10:
 			result = "Mười"
+		elif numbr%10==5:
+			result = "Mười Lăm"
 		else:
 			result = "Mười {}".format(readnum(numbr%10))
 	else:
 		if numbr%10==0:
 			result = "{} Mươi".format(readnum(numbr/10))
 		elif numbr%10==1:
-			result = "{} Mươi Mốt".format(readnum(numbr/10))
+			result = "{} Mốt".format(readnum(numbr/10))
+		elif numbr%10==5:
+			result = "{} Lăm".format(readnum(numbr/10))
 		else:
-			result = "{} Mươi {}".format(readnum(numbr/10), readnum(numbr%10))
+			result = "{} {}".format(readnum(numbr/10), readnum(numbr%10))
 	return result
 
 def readxyz(numbr):#read a number with xyz
