@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-# the sum of two elements defines the next
+#R number in string
 
 def readnum(numbr):#result = a name-vi a number
 	result = "";
