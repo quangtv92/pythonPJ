@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-# the sum of two elements defines the next
+# Read number in text file
+#ReadNumberInFile.py
 import main
 #tao mang so tu file *.txt
 def str_num_text(txtfile):

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-#Read number in string
+#Read number to string
+#main.py
 
 def readnum(numbr):#result = a name-vi a number
 	result = "";
@@ -29,6 +30,8 @@ def readnum(numbr):#result = a name-vi a number
 	return result
 
 def readxy(numbr):#read a number with xy
+	x=readnum(numbr/10)
+	y=readnum(numbr%10)
 	result = "";
 	if numbr<20:
 		if numbr==10:
@@ -36,31 +39,35 @@ def readxy(numbr):#read a number with xy
 		elif numbr%10==5:
 			result = "Mười Lăm"
 		else:
-			result = "Mười {}".format(readnum(numbr%10))
+			result = "Mười {}".format(y)
 	else:
 		if numbr%10==0:
-			result = "{} Mươi".format(readnum(numbr/10))
+			result = "{} Mươi".format(x)
 		elif numbr%10==1:
-			result = "{} Mốt".format(readnum(numbr/10))
+			result = "{} Mốt".format(x)
 		elif numbr%10==5:
-			result = "{} Lăm".format(readnum(numbr/10))
+			result = "{} Lăm".format(x)
 		else:
-			result = "{} {}".format(readnum(numbr/10), readnum(numbr%10))
+			result = "{} {}".format(x, y)
 	return result
 
 def readxyz(numbr):#read a number with xyz
 	result = "";
+	x=readnum(numbr/100)
+	yz=readxy(numbr%100)
+	z=readnum(numbr%10)
+
 	if numbr<10:
 		result = readnum(numbr)
 	elif numbr<100:
 		result = readxy(numbr)
 	elif numbr<1000:
 		if numbr%100==0: #x00
-			result = "{} Trăm".format(readnum(numbr/100))
+			result = "{} Trăm".format(x)
 		elif (numbr%100)/10==0: #x0z
-			result = "{} Trăm Lẻ {}".format(readnum(numbr/100),readnum(numbr%10))
+			result = "{} Trăm Lẻ {}".format(x,z)
 		else:
-			result = "{} Trăm {}".format(readnum(numbr/100), readxy(numbr%100))
+			result = "{} Trăm {}".format(x, yz)
 	else:
 		result = "{}".format(numbr)
 	return result.lower().capitalize()
@@ -75,22 +82,11 @@ def converArrtoStr(str):
 	for i in range(0,len(arr)):
 		arr[i]=int(arr[i])
 	return arr
-#function return sorted array
-def sorted_array(arr):
-	for i in range(0, len(arr)-1):
-		for j in range(i+1, len(arr)):
-			if arr[i]>arr[j]:
-				temp=arr[i]
-				arr[i]=arr[j]
-				arr[j]=temp
-	return arr
 
-#ham sorted cua he thong
-#print sorted(arr)
 #Doc so tu mang:
 def readNumofArray(arr):
 	str=""
-	sorted_array(arr)
+	#sorted(arr)
 	for i in arr:
 		if i==arr[len(arr)-1]:
 			str+=readxyz(int(i))
@@ -102,8 +98,8 @@ strnum=raw_input("Nhập chuỗi số nguyên dương cách nhau bởi khoảng 
 	**Enter để bỏ qua**\n")
 if strnum!="":
 	try:
-		arr=converArrtoStr(strnum)
-		print "Chuỗi số tăng dần: ",sorted_array(arr)
+		arr=sorted(converArrtoStr(strnum))
+		print "Chuỗi số tăng dần: ",arr
 		print readNumofArray(arr)
 	except Exception as e:
 		print "Chuỗi nhập vào không đúng định dạng."
